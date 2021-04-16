@@ -1,43 +1,293 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="utf-8" />
-    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+    <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/png" href="/assets/images/icons/favicon.ico" />
+
     <meta name="theme-color" content="#000000" />
     <meta
       name="description"
       content="Web site created using create-react-app"
     />
-    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
-    <!--
-      manifest.json provides metadata used when your web app is installed on a
-      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
-    -->
-    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-    <!--
-      Notice the use of %PUBLIC_URL% in the tags above.
-      It will be replaced with the URL of the `public` folder during the build.
-      Only files inside the `public` folder can be referenced from the HTML.
+    <link rel="apple-touch-icon" href="/assets/images/icons/favicon.ico" />
 
-      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
-      work correctly both with client-side routing and a non-root public URL.
-      Learn how to configure a non-root public URL by running `npm run build`.
-    -->
-    <title>React App</title>
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+
+    <title>Deep Thoughts</title>
+
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="/assets/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="/assets/css/bootstrap-datepicker.min.css"
+    />
+
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="fonts/fontawesome-5.0.8/css/fontawesome-all.min.css"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="fonts/iconic/css/material-design-iconic-font.min.css"
+    />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&family=Poppins:wght@500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="/assets/css/bootstrap-select.css"
+    />
+    <link rel="stylesheet" type="text/css" href="/assets/css/animate.css" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="/assets/css/hamburgers.min.css"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="/assets/css/animsition.min.css"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="/assets/css/owl.carousel.css"
+    />
+    <link rel="stylesheet" type="text/css" href="/assets/css/owl.theme.css" />
+    <link rel="stylesheet" type="text/css" href="/assets/css/util.min.css" />
+    <link rel="stylesheet" type="text/css" href="/assets/css/main.css" />
+    <link rel="stylesheet" type="text/css" href="/assets/css/developer.css" />
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
-    <!--
-      This HTML file is a template.
-      If you open it directly in the browser, you will see an empty page.
+    <script src="/assets/js/jquery-3.2.1.min.js"></script>
+    <script src="/assets/js/animsition.min.js"></script>
+    <script src="/assets/js/popper.js"></script>
+    <script src="/assets/js/bootstrap.min.js"></script>
+    <script src="/assets/js/bootstrap-datepicker.min.js"></script>
+    <script src="/assets/js/bootstrap-select.js"></script>
+    <script src="/assets/js/owl.carousel.js"></script>
+    <script src="/assets/js/main.js"></script>
+    <!-- Login.js  Home.js  About.js  Programmes.js   Register.js-->
+    <script>
+      $(document).ready(function () {
+        $("#owl-demo").owlCarousel({
+          navigation: true,
+          slideSpeed: 300,
+          paginationSpeed: 400,
+          singleItem: true,
+        });
+      });
 
-      You can add webfonts, meta tags, or analytics to this file.
-      The build step will place the bundled scripts into the <body> tag.
+      $(document).ready(function () {
+        $("#owl-demo2").owlCarousel({
+          navigation: true,
+          slideSpeed: 300,
+          paginationSpeed: 400,
+          singleItem: true,
+        });
+      });
 
-      To begin the development, run `npm start` or `yarn start`.
-      To create a production bundle, use `npm run build` or `yarn build`.
-    -->
+      $(document).ready(function () {
+        $("#owl-demo3").owlCarousel({
+          navigation: true,
+          slideSpeed: 300,
+          paginationSpeed: 400,
+          singleItem: true,
+        });
+      });
+    </script>
+    <!-- Login.js   Home.js  About.js   Programmes.js  Register.js-->
+    <script>
+      $(document).ready(function () {
+        $(".owl-carousel").owlCarousel({
+          nav: true,
+        });
+        $(".owl-prev").html('<i class="fas fa-angle-left"></i>');
+        $(".owl-next").html('<i class="fas fa-angle-right"></i>');
+      });
+    </script>
+    <!-- Home.js   About.js   Programmes.js-->
+    <script>
+      $(document).ready(function () {
+        var sync1 = $("#sync1");
+        var sync2 = $("#sync2");
+
+        sync1.owlCarousel({
+          singleItem: true,
+          slideSpeed: 1000,
+          navigation: true,
+          pagination: false,
+          afterAction: syncPosition,
+          responsiveRefreshRate: 200,
+        });
+
+        sync2.owlCarousel({
+          items: 15,
+          itemsDesktop: [1199, 10],
+          itemsDesktopSmall: [979, 10],
+          itemsTablet: [768, 8],
+          itemsMobile: [479, 4],
+          pagination: false,
+          responsiveRefreshRate: 100,
+          afterInit: function (el) {
+            el.find(".owl-item").eq(0).addClass("synced");
+          },
+        });
+
+        function syncPosition(el) {
+          var current = this.currentItem;
+          $("#sync2")
+            .find(".owl-item")
+            .removeClass("synced")
+            .eq(current)
+            .addClass("synced");
+          if ($("#sync2").data("owlCarousel") !== undefined) {
+            center(current);
+          }
+        }
+
+        $("#sync2").on("click", ".owl-item", function (e) {
+          e.preventDefault();
+          var number = $(this).data("owlItem");
+          sync1.trigger("owl.goTo", number);
+        });
+
+        function center(number) {
+          var sync2visible = sync2.data("owlCarousel").owl.visibleItems;
+
+          var num = number;
+          var found = false;
+          for (var i in sync2visible) {
+            if (num === sync2visible[i]) {
+              var found = true;
+            }
+          }
+
+          if (found === false) {
+            if (num > sync2visible[sync2visible.length - 1]) {
+              sync2.trigger("owl.goTo", num - sync2visible.length + 2);
+            } else {
+              if (num - 1 === -1) {
+                num = 0;
+              }
+              sync2.trigger("owl.goTo", num);
+            }
+          } else if (num === sync2visible[sync2visible.length - 1]) {
+            sync2.trigger("owl.goTo", sync2visible[1]);
+          } else if (num === sync2visible[0]) {
+            sync2.trigger("owl.goTo", num - 1);
+          }
+        }
+      });
+    </script>
+    <!-- About.js   Programmes.js -->
+    <script>
+      var sizeTheOverlays = function () {
+        $(".overlay")
+          .resize()
+          .each(function () {
+            var h = $(this).parent().outerHeight();
+            var w = $(this).parent().outerWidth();
+            $(this).css("height", h);
+            $(this).css("width", w);
+          });
+      };
+      sizeTheOverlays();
+
+      var width = $(window).width();
+      $(window).resize(function () {
+        if ($(this).width() != width) {
+          width = $(this).width();
+          sizeTheOverlays();
+        }
+      });
+    </script>
+    <!-- Login.js   Register.js -->
+    <script>
+      $(document).ready(function () {
+        $("#show_hide_password a").on("click", function (event) {
+          event.preventDefault();
+          if ($("#show_hide_password input").attr("type") == "text") {
+            $("#show_hide_password input").attr("type", "password");
+            $("#show_hide_password i").addClass("fa-eye-slash");
+            $("#show_hide_password i").removeClass("fa-eye");
+          } else if (
+            $("#show_hide_password input").attr("type") == "password"
+          ) {
+            $("#show_hide_password input").attr("type", "text");
+            $("#show_hide_password i").removeClass("fa-eye-slash");
+            $("#show_hide_password i").addClass("fa-eye");
+          }
+        });
+      });
+    </script>
+    <!-- Programmes.js -->
+    <script>
+      $(".video")
+        .parent()
+        .click(function () {
+          if ($(this).children(".video").get(0).paused) {
+            $(this).children(".video").get(0).play();
+            $(this).children(".playpause").fadeOut();
+          } else {
+            $(this).children(".video").get(0).pause();
+            $(this).children(".playpause").fadeIn();
+          }
+        });
+    </script>
+    <!-- Register.js -->
+    <script>
+      function createOptions(number) {
+        var options = [],
+          _options;
+
+        for (var i = 0; i < number; i++) {
+          var option = '<option value="' + i + '">Option ' + i + "</option>";
+          options.push(option);
+        }
+
+        _options = options.join("");
+
+        $("#number")[0].innerHTML = _options;
+        $("#number-multiple")[0].innerHTML = _options;
+
+        $("#number2")[0].innerHTML = _options;
+        $("#number2-multiple")[0].innerHTML = _options;
+      }
+
+      var mySelect = $("#first-disabled2");
+
+      createOptions(4000);
+
+      $("#special").on("click", function () {
+        mySelect.find("option:selected").prop("disabled", true);
+        mySelect.selectpicker("refresh");
+      });
+
+      $("#special2").on("click", function () {
+        mySelect.find("option:disabled").prop("disabled", false);
+        mySelect.selectpicker("refresh");
+      });
+
+      $("#basic2").selectpicker({
+        liveSearch: true,
+        maxOptions: 1,
+      });
+    </script>
+
+    <style></style>
   </body>
 </html>
