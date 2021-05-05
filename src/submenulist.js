@@ -1,13 +1,49 @@
 import React from "react";
 import Header from "./header";
 import Footer from "./footer";
-class Programmes extends React.Component {
+import axios from "axios";
+class SubMenuList extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = { plpID: "" };
+  }
+
+  componentDidMount() {
+    const { plpID } = this.props.match.params;
+    this.menusDetails(plpID);
+    this.postDetails(plpID);
+  }
+  componentWillReceiveProps(nextProps, prevState) {
+    console.log(nextProps);
+    const { plpID } = nextProps.match.params;
+    this.menusDetails(plpID);
+    this.postDetails(plpID);
+  }
+
+  menusDetails(plpID) {
+    axios
+      .get(
+        `https://deepthoughts-nodejs.herokuapp.com/admin/submenuvalues/${plpID}`
+      )
+      .then((res) => {
+        const submenus = res.data;
+        console.log(submenus);
+        this.setState({ submenus });
+      });
+  }
+
+  postDetails(plpID) {
+    axios
+      .get(`https://deepthoughts-nodejs.herokuapp.com/postvalues/${plpID}`)
+      .then((res) => {
+        const postvalues = res.data;
+        console.log(postvalues);
+        this.setState({ postvalues });
+      });
   }
 
   render() {
+    const { plpID } = this.props.match.params;
     return (
       <>
         <Header />
@@ -17,12 +53,12 @@ class Programmes extends React.Component {
             <div className="container">
               <div className="row m-0">
                 <div className="col-md-12">
-                  <h1 className="txt-center main-head">Programmes</h1>
-                  <p>
+                  <h1 className="txt-center main-head">{plpID}</h1>
+                  {/* <p>
                     Hic molestiae vel temporibus doloremque occaecati. Quasi in
                     quos quasi quia dicta ea ut adipisci quis. Ut eum possimus
                     autem est temporibus iste beatae autem.
-                  </p>
+                  </p> */}
                 </div>
               </div>
             </div>
@@ -38,72 +74,22 @@ class Programmes extends React.Component {
                   {/* 
 <!-- Nav tabs --> */}
                   <ul className="nav nav-tabs" role="tablist">
-                    <li className="nav-item">
-                      <a
-                        className="nav-link active"
-                        data-toggle="tab"
-                        href="#tab1-1"
-                        role="tab"
-                      >
-                        QuizApp
-                      </a>
-                    </li>
-
-                    <li className="nav-item">
-                      <a
-                        className="nav-link"
-                        data-toggle="tab"
-                        href="#tab1-2"
-                        role="tab"
-                      >
-                        Workshops
-                      </a>
-                    </li>
-
-                    <li className="nav-item">
-                      <a
-                        className="nav-link"
-                        data-toggle="tab"
-                        href="#tab1-3"
-                        role="tab"
-                      >
-                        Questionnaires
-                      </a>
-                    </li>
-
-                    <li className="nav-item">
-                      <a
-                        className="nav-link"
-                        data-toggle="tab"
-                        href="#tab1-4"
-                        role="tab"
-                      >
-                        Socratic Dialogue
-                      </a>
-                    </li>
-
-                    <li className="nav-item">
-                      <a
-                        className="nav-link"
-                        data-toggle="tab"
-                        href="#tab1-5"
-                        role="tab"
-                      >
-                        Design Thinking
-                      </a>
-                    </li>
-
-                    <li className="nav-item-more dropdown dis-none">
-                      <a
-                        className="nav-link dropdown-toggle"
-                        data-toggle="dropdown"
-                        href="#"
-                      >
-                        <i className="fa fa-ellipsis-h"></i>
-                      </a>
-
-                      <ul className="dropdown-menu"></ul>
-                    </li>
+                    {this.state.submenus &&
+                      this.state.submenus.map((data, index) => {
+                        return (
+                          <li className="nav-item" key={index}>
+                            <a
+                              //active
+                              className="nav-link "
+                              data-toggle="tab"
+                              href="#tab1-1"
+                              role="tab"
+                            >
+                              {data.submenu}
+                            </a>
+                          </li>
+                        );
+                      })}
                   </ul>
 
                   {/* <!--  --> */}
@@ -861,4 +847,4 @@ class Programmes extends React.Component {
   }
 }
 
-export default Programmes;
+export default SubMenuList;

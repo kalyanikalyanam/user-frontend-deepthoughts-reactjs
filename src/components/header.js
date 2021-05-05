@@ -1,6 +1,8 @@
 import React from "react";
-import { Link } from "react-router-dom";
+
 import axios from "axios";
+import Loaderpage from "../components/LoaderPage";
+import { Link, withRouter } from "react-router-dom";
 
 class Header extends React.Component {
   constructor(props) {
@@ -16,6 +18,21 @@ class Header extends React.Component {
       .then((res) => {
         const menus = res.data;
         this.setState({ menus });
+      });
+
+    axios
+      .get(
+        `https://deepthoughts-nodejs.herokuapp.com/blog/update_blog/608a5f3bb23d99001525b0ce`
+      )
+      .then((res) => {
+        console.log(res.data);
+        const blog = {
+          url: res.data.url,
+        };
+        console.log(blog.url);
+        this.setState({
+          url: blog.url,
+        });
       });
   }
   render() {
@@ -51,7 +68,7 @@ class Header extends React.Component {
                 this.state.menus.map((menu, index) => {
                   return (
                     <li>
-                      <a href="/programmes">{menu.menu}</a>
+                      <a href={menu.menu}>{menu.menu}</a>
                       <ul className="sub-menu-m">
                         <li>
                           <a href="#">Workshops</a>
@@ -72,72 +89,6 @@ class Header extends React.Component {
                     </li>
                   );
                 })}
-
-              {/* <li>
-                <a href="#">Impact</a>
-                <ul className="sub-menu-m">
-                  <li>
-                    <a href="#">Anecdotes</a>
-                  </li>
-                  <li>
-                    <a href="#">Learning Communities</a>
-                  </li>
-                  <li>
-                    <a href="#">Collaborations</a>
-                  </li>
-                  <li>
-                    <a href="#">Scholarships</a>
-                  </li>
-                  <li>
-                    <a href="#">Success Stories</a>
-                  </li>
-                </ul>
-                <span className="arrow-main-menu-m">
-                  <i className="fa fa-angle-right" aria-hidden="true"></i>
-                </span>
-              </li>
-
-              <li>
-                <a href="#">Revolution</a>
-                <ul className="sub-menu-m">
-                  <li>
-                    <a href="#">Pedagogy</a>
-                  </li>
-                  <li>
-                    <a href="#">Curriculum</a>
-                  </li>
-                  <li>
-                    <a href="#">Content Engines</a>
-                  </li>
-                  <li>
-                    <a href="#">Learning Rituals</a>
-                  </li>
-                </ul>
-                <span className="arrow-main-menu-m">
-                  <i className="fa fa-angle-right" aria-hidden="true"></i>
-                </span>
-              </li>
-
-              <li>
-                <a href="#">Quizzes</a>
-                <ul className="sub-menu-m">
-                  <li>
-                    <a href="#">MatSci</a>
-                  </li>
-                  <li>
-                    <a href="#">Olympiad</a>
-                  </li>
-                  <li>
-                    <a href="#">Entertainment</a>
-                  </li>
-                  <li>
-                    <a href="#">YoungCEO</a>
-                  </li>
-                </ul>
-                <span className="arrow-main-menu-m">
-                  <i className="fa fa-angle-right" aria-hidden="true"></i>
-                </span>
-              </li> */}
 
               <li>
                 <a href="#">Blogs</a>
@@ -177,216 +128,38 @@ class Header extends React.Component {
                       this.state.menus.map((menu, index) => {
                         return (
                           <li className="mega-menu-item">
-                            <a href="/programmes">{menu.menu}</a>
-                            <div className="sub-mega-menu">
-                              <div className="row col-12 p-0 m-0">
-                                <div className="col-md-6 sub-space">
-                                  <h1>
-                                    <img src="/assets/images/icons/workshop-icon.svg" />
-                                    Workshops
-                                  </h1>
-                                  <p>
-                                    Short two lines description about the
-                                    programme section
-                                  </p>
-                                </div>
-                                <div className="col-md-6 sub-space">
-                                  <h1>
-                                    <img src="/assets/images/icons/socratic-dialogue.svg" />
-                                    Socratic Dialogue
-                                  </h1>
-                                  <p>
-                                    Short two lines description about the
-                                    programme section
-                                  </p>
-                                </div>
-                                <div className="col-md-6 sub-space">
-                                  <h1>
-                                    <img src="/assets/images/icons/questionnaires.svg" />
-                                    Questionnaires
-                                  </h1>
-                                  <p>
-                                    Short two lines description about the
-                                    programme section
-                                  </p>
-                                </div>
-                                <div className="col-md-6 sub-space">
-                                  <h1>
-                                    <img src="/assets/images/icons/design-thinking.svg" />
-                                    Design Thinking
-                                  </h1>
-                                  <p>
-                                    Short two lines description about the
-                                    programme section
-                                  </p>
-                                </div>
-                              </div>
-                            </div>
+                            <a
+                              href={`/SubMenuList/${menu.menu}`}
+                              className={
+                                this.isPathActive(`/SubMenuList/${menu.menu}`)
+                                  ? "active"
+                                  : null
+                              }
+                            >
+                              {menu.menu}
+                            </a>
+                            <SubMenuView MenuName={menu.menu} />{" "}
                           </li>
                         );
                       })}
 
-                    {/* <li className="mega-menu-item">
-                      <a href="#">Impact </a>
-                      <div className="sub-mega-menu">
-                        <div className="row col-12 p-0 m-0">
-                          <div className="col-md-6 sub-space">
-                            <h1>
-                              <img src="/assets/images/icons/anecdotes.svg" />
-                              Anecdotes
-                            </h1>
-                            <p>
-                              Short two lines description about the programme
-                              section
-                            </p>
-                          </div>
-                          <div className="col-md-6 sub-space">
-                            <h1>
-                              <img src="/assets/images/icons/learning-communities.svg" />
-                              Learning Communities
-                            </h1>
-                            <p>
-                              Short two lines description about the programme
-                              section
-                            </p>
-                          </div>
-                          <div className="col-md-6 sub-space">
-                            <h1>
-                              <img src="/assets/images/icons/collaborations.svg" />
-                              Collaborations
-                            </h1>
-                            <p>
-                              Short two lines description about the programme
-                              section
-                            </p>
-                          </div>
-                          <div className="col-md-6 sub-space">
-                            <h1>
-                              <img src="/assets/images/icons/scholarships.svg" />
-                              Scholarships
-                            </h1>
-                            <p>
-                              Short two lines description about the programme
-                              section
-                            </p>
-                          </div>
-                          <div className="col-md-6 sub-space">
-                            <h1>
-                              <img src="/assets/images/icons/success-stories.svg" />
-                              Success Stories
-                            </h1>
-                            <p>
-                              Short two lines description about the programme
-                              section
-                            </p>
-                          </div>
-                        </div>
-                      </div>
-                    </li>
-
-                    <li className="mega-menu-item">
-                      <a href="#">Revolution</a>
-
-                      <div className="sub-mega-menu">
-                        <div className="row col-12 p-0 m-0">
-                          <div className="col-md-6 sub-space">
-                            <h1>
-                              <img src="/assets/images/icons/pedagogy.svg" />
-                              Pedagogy
-                            </h1>
-                            <p>
-                              Short two lines description about the programme
-                              section
-                            </p>
-                          </div>
-                          <div className="col-md-6 sub-space">
-                            <h1>
-                              <img src="/assets/images/icons/curriculum.svg" />
-                              Curriculum
-                            </h1>
-                            <p>
-                              Short two lines description about the programme
-                              section
-                            </p>
-                          </div>
-                          <div className="col-md-6 sub-space">
-                            <h1>
-                              <img src="/assets/images/icons/content-engines.svg" />
-                              Content Engines
-                            </h1>
-                            <p>
-                              Short two lines description about the programme
-                              section
-                            </p>
-                          </div>
-                          <div className="col-md-6 sub-space">
-                            <h1>
-                              <img src="/assets/images/icons/learning-rituals.svg" />
-                              Learning Rituals
-                            </h1>
-                            <p>
-                              Short two lines description about the programme
-                              section
-                            </p>
-                          </div>
-                        </div>
-                      </div>
-                    </li>
-
-                    <li className="mega-menu-item">
-                      <a href="#">Quizzes</a>
-
-                      <div className="sub-mega-menu">
-                        <div className="row col-12 p-0 m-0">
-                          <div className="col-md-6 sub-space">
-                            <h1>
-                              <img src="/assets/images/icons/mat-sci.svg" />
-                              MatSci
-                            </h1>
-                            <p>
-                              Short two lines description about the programme
-                              section
-                            </p>
-                          </div>
-                          <div className="col-md-6 sub-space">
-                            <h1>
-                              <img src="/assets/images/icons/olympiad.svg" />
-                              Olympiad
-                            </h1>
-                            <p>
-                              Short two lines description about the programme
-                              section
-                            </p>
-                          </div>
-                          <div className="col-md-6 sub-space">
-                            <h1>
-                              <img src="/assets/images/icons/entertainment.svg" />
-                              Entertainment
-                            </h1>
-                            <p>
-                              Short two lines description about the programme
-                              section
-                            </p>
-                          </div>
-                          <div className="col-md-6 sub-space">
-                            <h1>
-                              <img src="/assets/images/icons/youngCEO.svg" />
-                              YoungCEO
-                            </h1>
-                            <p>
-                              Short two lines description about the programme
-                              section
-                            </p>
-                          </div>
-                        </div>
-                      </div>
-                    </li> */}
-
                     <li>
-                      <a href="#">Blogs</a>
+                      <a
+                        href="/blog"
+                        className={this.isPathActive("/blog") ? "active" : null}
+                      >
+                        Blogs
+                      </a>
                     </li>
                     <li>
-                      <a href="/about">About Us </a>
+                      <a
+                        href="/about"
+                        className={
+                          this.isPathActive("/about") ? "active" : null
+                        }
+                      >
+                        About Us{" "}
+                      </a>
                     </li>
                   </ul>
                 </nav>
@@ -394,9 +167,9 @@ class Header extends React.Component {
             </div>
 
             <div className="login-search-desktop">
-              <span className="search-iocn">
+              {/* <span className="search-iocn">
                 <i className="fas fa-search"></i>
-              </span>
+              </span> */}
               <span className="login">
                 <a href="/login" className="btn-small">
                   Login
@@ -408,6 +181,72 @@ class Header extends React.Component {
       </header>
     );
   }
+  isPathActive(path) {
+    return this.props.location.pathname.startsWith(path);
+  }
 }
 
-export default Header;
+class SubMenuView extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { loading: false };
+  }
+
+  componentDidMount() {
+    let selectedMenuName = this.props.MenuName;
+    axios
+      .get(
+        `https://deepthoughts-nodejs.herokuapp.com/admin/submenuvalues/${selectedMenuName}`
+      )
+      .then((res) => {
+        const submenus = res.data;
+        console.log(submenus);
+        this.setState({ submenus, loading: true });
+      });
+  }
+
+  render() {
+    var subSubMenuList =
+      this.state.submenus &&
+      this.state.submenus.map((data, index) => {
+        return (
+          <div className="col-md-6 sub-space" key={index}>
+            <h1>
+              {this.state.loading ? (
+                <img src={data.image} />
+              ) : (
+                <div className="divLoader1">
+                  <Loaderpage />
+                </div>
+              )}
+
+              <a
+                // href={`/PostList/${data.submenu}`}
+                href={`/PostList/${data.submenu}/${data.menu}`}
+                // className={
+                //   this.isPathActive1(`/PostList/${data.submenu}`)
+                //     ? "active"
+                //     : null
+                // }
+              >
+                {data.submenu}
+              </a>
+            </h1>
+            <p>{data.description}</p>
+          </div>
+        );
+      });
+
+    return (
+      <>
+        <div className="sub-mega-menu">
+          <div className="row col-12 p-0 m-0">{subSubMenuList} </div>
+        </div>
+      </>
+    );
+  }
+  // isPathActive(path) {
+  //   return this.props.location.pathname.startsWith(path);
+  // }
+}
+export default withRouter(Header);

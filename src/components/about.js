@@ -1,7 +1,9 @@
 import React from "react";
 import Header from "./header";
 import Footer from "./footer";
-
+import About2 from "../components/about/about2";
+import About3 from "../components/about/about3";
+import { Helmet } from "react-helmet";
 class About extends React.Component {
   constructor(props) {
     super(props);
@@ -11,6 +13,11 @@ class About extends React.Component {
   render() {
     return (
       <>
+        <Helmet>
+          <meta charSet="utf-8" />
+          <title>Deep Thought - AboutUs</title>
+          <link rel="canonical" href="http://mysite.com/example" />
+        </Helmet>
         <Header />
 
         <main className="layout">
@@ -40,91 +47,9 @@ class About extends React.Component {
               </div>
             </div>
           </section>
-
-          <section className="values-about">
-            <div className="container">
-              <div className="row">
-                <div className="col-md-12">
-                  <h1 className="txt-left main-head value-margin">
-                    Values
-                    <br />& Principles
-                  </h1>
-                </div>
-
-                <div className="col-md-6 col-lg-4">
-                  <div className="values">
-                    <img src="/assets/images/icons/learning-first.svg" />
-                    <h4>Learning First</h4>
-                    <p>
-                      We at Deep Thought value learning over earning, we
-                      question everything in order to learn, and improve
-                      ourselves.
-                    </p>
-                  </div>
-                </div>
-
-                <div className="col-md-6 col-lg-4">
-                  <div className="values">
-                    <img src="/assets/images/icons/be-unconventional.svg" />
-                    <h4>Be Unconventional</h4>
-                    <p>
-                      Finding solutions to problems that looks impossible is at
-                      the core of our each team members.
-                    </p>
-                  </div>
-                </div>
-
-                <div className="col-md-6 col-lg-4">
-                  <div className="values">
-                    <img src="/assets/images/icons/students-first.svg" />
-                    <h4>Students First</h4>
-                    <p>
-                      Teaching a student how to think is important than teaching
-                      a student what to think. - Neil Degrasse Tyson
-                    </p>
-                  </div>
-                </div>
-
-                <div className="col-md-6 col-lg-4">
-                  <div className="values">
-                    <img src="/assets/images/icons/on-target.svg" />
-                    <h4>On Target</h4>
-                    <p>
-                      This is description of the value, something which
-                      elaborates on the key value and it couldgo up to two
-                      lines.
-                    </p>
-                  </div>
-                </div>
-
-                <div className="col-md-6 col-lg-4">
-                  <div className="values">
-                    <img src="/assets/images/icons/creativity-driven.svg" />
-                    <h4>Creativity Driven</h4>
-                    <p>
-                      This is description of the value, something which
-                      elaborates on the key value and it couldgo up to two
-                      lines.
-                    </p>
-                  </div>
-                </div>
-
-                <div className="col-md-6 col-lg-4">
-                  <div className="values">
-                    <img src="/assets/images/icons/robust-engine.svg" />
-                    <h4>Robust Engine</h4>
-                    <p>
-                      This is description of the value, something which
-                      elaborates on the key value and it couldgo up to two
-                      lines.
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section>
-
-          <section className="leadership">
+          <About2 />
+          <About3 />
+          {/* <section className="leadership">
             <div className="container">
               <div className="row">
                 <div className="col-md-12">
@@ -376,8 +301,7 @@ class About extends React.Component {
                 </div>
               </div>
             </div>
-          </section>
-
+          </section> */}
           <Footer />
         </main>
 

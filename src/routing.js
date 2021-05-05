@@ -6,7 +6,16 @@ import Login from "./auth/login";
 //Components
 import Home from "./components/home";
 import About from "./components/about";
-import Programmes from "./components/programmes";
+import SubMenuList from "./components/submenulist";
+import PostList from "./components/PostList";
+
+import Blog from "./components/blog/blog";
+import Articles from "./components/blog/articles";
+import BlogSingle from "./components/blog/blog_single";
+
+import TabsRender from "./components/blog/tabs";
+
+import Privatepage from "./components/privatepages/privatepage";
 export default class Routing extends React.Component {
   constructor(props) {
     super(props);
@@ -18,10 +27,18 @@ export default class Routing extends React.Component {
         {/* Auth */}
         <Route path="/register" component={Register} />
         <Route path="/login" component={Login} />
-
         <Route exact strict path="/" component={Home} />
         <Route path="/about" component={About} />
-        <Route path="/programmes" component={Programmes} />
+        <Route path="/SubMenuList/:plpID" component={SubMenuList} />
+        <Route path="/PostList/:plpID/:menu" component={PostList} />
+        <Route path="/blog" component={Blog} />
+        <Route path="/articles/:plpID" component={Articles} />
+        <Route
+          path="/blog_single/:_id/:title/:category"
+          component={BlogSingle}
+        />
+        <Route path="/TabsRender" component={TabsRender} />
+        <Route path="/Privatepage/:_id/:title" component={Privatepage} />
       </Router>
     );
   }

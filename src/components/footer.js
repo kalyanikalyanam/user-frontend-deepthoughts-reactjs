@@ -1,9 +1,18 @@
 import React from "react";
-
+import axios from "axios";
 class Footer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {};
+  }
+  componentDidMount() {
+    axios
+      .get(`https://deepthoughts-nodejs.herokuapp.com/private/privatepages`)
+      .then((res) => {
+        const PrivatePages = res.data;
+        console.log(PrivatePages);
+        this.setState({ PrivatePages });
+      });
   }
 
   render() {
@@ -56,6 +65,28 @@ class Footer extends React.Component {
                   </ul>
                 </div>
               </div>
+              {/* <div className="footer-box-3 col-lg-2 col-md-3 p-b-20 p-r-0">
+                <div className="footer-menu">
+                  <h1>Private Pages</h1>
+                  <ul>
+                    {this.state.PrivatePages &&
+                      this.state.PrivatePages.map((page, index) => {
+                        return (
+                          <li key={index}>
+                            <a
+                              href={`/Privatepage/${
+                                page._id
+                              }/${page.title.replace(/\s/g, "_")}`}
+                            >
+                              {page.title}
+                            </a>
+                          
+                          </li>
+                        );
+                      })}
+                  </ul>
+                </div>
+              </div> */}
             </div>
           </div>
         </div>
