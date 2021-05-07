@@ -9,7 +9,6 @@
 }
 body,
 html {
-  font-family: Arial, sans-serif;
   font-size: 15px;
   color: #666;
   height: 100%;
@@ -17,7 +16,7 @@ html {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
-  font-family: "Open Sans", sans-serif;
+  font-family: "Inter", sans-serif !important;
 }
 a:focus {
   outline: 0;

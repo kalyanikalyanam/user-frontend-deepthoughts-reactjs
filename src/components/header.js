@@ -9,7 +9,10 @@ class Header extends React.Component {
     super(props);
     this.state = {
       menus: [],
+      sideBar: false,
     };
+
+    this.handleSidebar = this.handleSidebar.bind(this);
   }
 
   componentDidMount() {
@@ -35,6 +38,11 @@ class Header extends React.Component {
         });
       });
   }
+  handleSidebar() {
+    this.setState({
+      sideBar: !this.state.sideBar,
+    });
+  }
   render() {
     return (
       <header>
@@ -46,24 +54,75 @@ class Header extends React.Component {
               </a>
             </div>
 
-            <div className="login-search-mobile">
+            {/* <div className="login-search-mobile">
               <span className="search-iocn">
                 <i className="fas fa-search"></i>
               </span>
-            </div>
+            </div> */}
 
             {/* <!-- Button show menu --> */}
 
-            <div className="btn-show-menu-mobile hamburger hamburger--squeeze m-r--8">
+            {/* <div className="btn-show-menu-mobile hamburger hamburger--squeeze m-r--8">
               <span className="hamburger-box">
                 <span className="hamburger-inner"></span>
               </span>
-            </div>
+            </div> */}
+            {/* <div className="btn-show-menu-mobile hamburger hamburger--squeeze m-r--8">
+              <span className="hamburger-box">
+                <span className="hamburger-inner"> */}
+            <button
+              onClick={this.handleSidebar}
+              className={`navToggle ${this.state.sideBar ? "open" : null}`}
+            >
+              <span />
+              <span />
+              <span />
+            </button>
+            {/* </span>
+              </span>
+            </div> */}
           </div>
+          <nav>
+            <ul
+              className="mainNav"
+              style={this.state.sideBar ? { transform: "translateX(0)" } : null}
+            >
+              {this.state.menus &&
+                this.state.menus.map((menu, index) => {
+                  return (
+                    <li>
+                      <a
+                        href={`/SubMenuList/${menu.menu}`}
+                        className={
+                          this.isPathActive(`/SubMenuList/${menu.menu}`)
+                            ? "active"
+                            : null
+                        }
+                        className="mainNavLink"
+                      >
+                        {menu.menu}
+                      </a>
+                    </li>
+                  );
+                })}
+
+              <li>
+                <Link to="/blog" className="mainNavLink">
+                  Blog
+                </Link>
+              </li>
+              <li>
+                <Link to="/about" className="mainNavLink">
+                  About Us
+                </Link>
+              </li>
+            </ul>
+          </nav>
 
           {/* <!-- Menu Mobile --> */}
+
           <div className="menu-mobile">
-            <ul className="main-menu-m">
+            {/* <ul className="main-menu-m">
               {this.state.menus &&
                 this.state.menus.map((menu, index) => {
                   return (
@@ -107,7 +166,7 @@ class Header extends React.Component {
                   </span>
                 </div>
               </li>
-            </ul>
+            </ul> */}
           </div>
 
           <div className="wrap-logo container">

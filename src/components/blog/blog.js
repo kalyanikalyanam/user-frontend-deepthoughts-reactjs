@@ -139,7 +139,15 @@ function Blog1() {
                     return (
                       <li>
                         {/* href={`/articles/${blog.category}`} */}
-                        <a href={`/articles/${blog.category}`}>
+                        <a
+                          // className={
+                          //   this.isPathActive(`/articles/${blog.category}`)
+                          //     ? "active"
+                          //     : null
+                          // }
+                          href={`/articles/${blog.category}`}
+                          className="active"
+                        >
                           {blog.category}
                         </a>
                       </li>

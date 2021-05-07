@@ -146,7 +146,7 @@ function Articles(props) {
             </div>
 
             <div className="blog_tabs">
-              <ul id="tabs" className="nav nav-tabs">
+              {/* <ul id="tabs" className="nav nav-tabs">
                 {categorydata &&
                   categorydata.map((blog, index) => {
                     return (
@@ -154,6 +154,22 @@ function Articles(props) {
                         <a
                           href={`/articles/${blog.category}`}
                           ClassName="active"
+                        >
+                          {blog.category}
+                        </a>
+                      </li>
+                    );
+                  })}
+              </ul> */}
+              <ul id="tabs" className="nav nav-tabs">
+                {categorydata &&
+                  categorydata.map((blog, index) => {
+                    return (
+                      <li>
+                        {/* href={`/articles/${blog.category}`} */}
+                        <a
+                          href={`/articles/${blog.category}`}
+                          className="active"
                         >
                           {blog.category}
                         </a>
