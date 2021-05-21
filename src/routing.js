@@ -13,7 +13,7 @@ import Blog from "./components/blog/blog";
 import Articles from "./components/blog/articles";
 import BlogSingle from "./components/blog/blog_single";
 
-import TabsRender from "./components/blog/tabs";
+import Reacttabs from "./components/react_tabs";
 
 import Privatepage from "./components/privatepages/privatepage";
 export default class Routing extends React.Component {
@@ -37,7 +37,7 @@ export default class Routing extends React.Component {
           path="/blog_single/:_id/:title/:category"
           component={BlogSingle}
         />
-        <Route path="/TabsRender" component={TabsRender} />
+        <Route path="/Reacttabs" component={Reacttabs} />
         <Route path="/Privatepage/:_id/:title" component={Privatepage} />
       </Router>
     );
